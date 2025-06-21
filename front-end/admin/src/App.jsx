@@ -7,7 +7,7 @@ import List from './pages/List/List'
 import Orders from './pages/Orders/Orders'
 import { ToastContainer } from 'react-toastify';
 const App = () => {
-  const url = process.env.VITE_BACKEND_AD || "http://localhost:4000";
+  const url = import.meta.env.VITE_BACKEND_AD || "http://localhost:4000";
   return (
     <div>
       <ToastContainer/>
