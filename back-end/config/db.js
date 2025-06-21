@@ -1,5 +1,14 @@
 import mongoose from "mongoose";
 
 export const connectDB = async () => {
-    await mongoose.connect('mongodb+srv://hiep:280402@hiepphung.zv3vkfl.mongodb.net/food_delivery').then(()=>console.log("DB Connected"))
-}
+    try {
+        await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log("✅ MongoDB Connected");
+    } catch (error) {
+        console.error("❌ MongoDB Connection Error:", error.message);
+        process.exit(1); // Dừng app nếu không kết nối được
+    }
+};
