@@ -12,7 +12,7 @@ const Verify = () => {
     const verifyPayment = async () => {
         try {
             const res = await axios.post(`${url}/api/order/verify`, { success, orderId });
-            console.log("sai gi khong" ,   res.data)
+            console.log("sai gi khong" ,  res.data)
             if (res.data?.success) {
                 navigate("/myorders");
             } else {
