@@ -17,7 +17,7 @@ const Verify = () => {
         else{
             navigate("/")
         }
-    }   
+    }
     useEffect(()=>{
         verifyPayment()
     },[])
