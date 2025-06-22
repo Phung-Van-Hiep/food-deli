@@ -9,18 +9,23 @@ const Verify = () => {
     const orderId = searchParams.get("orderId")
     const { url } = useContext(StoreContext)
     const navigate = useNavigate()
-    const verifyPayment = async () =>{
-        const response = await axios.post(url+"/api/order/verify",{success,orderId})
-        if(response.data.success){
-            navigate("/myorders")
+    const verifyPayment = async () => {
+        try {
+            const res = await axios.post(`${url}/api/order/verify`, { success, orderId });
+            console.log("sai gi khong" ,   res.data)
+            if (res.data?.success) {
+                navigate("/myorders");
+            } else {
+                navigate("/");
+            }
+        } catch (err) {
+            console.error("verifyPayment error:", err.message);
+            navigate("/");                    // fallback an toàn
         }
-        else{
-            navigate("/")
-        }
-    }
-    useEffect(()=>{
+    };
+    useEffect(() => {
         verifyPayment()
-    },[])
+    }, [])
     return (
         <div className='verify'>
             <div className="spinner"></div>
